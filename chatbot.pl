@@ -32,10 +32,12 @@ handle_input(Command) :-
         write('Você gostaria de saber sobre alguma dessas flags? (sim/nao)'), nl,
         read(Choice),
         handle_choice(Choice, Command, Flags)
-    ).
+    ),
+    ask_another_command.
 
 handle_input(_) :-
-    write('Comando não reconhecido. Por favor, digite outro comando.'), nl.
+    write('Comando não reconhecido. Por favor, digite outro comando.'), nl,
+    ask_another_command.
 
 handle_choice(sim, Command, Flags) :-
     write('As flags disponíveis são: '), write(Flags), nl,
@@ -48,11 +50,24 @@ handle_choice(sim, Command, Flags) :-
     ).
 
 handle_choice(nao, _, _) :-
-    write('Obrigado por usar o ChatBot de Comandos Linux!'), nl.
+    write('Obrigado por usar o ChatBot de Comandos Linux!'), nl,
+    ask_another_command.
 
-handle_flag(_, Flag) :-
+handle_flag(Command, Flag) :-
     flag_description(Flag, Description),
-    write('A flag '), write(Flag), write(' faz: '), write(Description), nl.
+    write('A flag '), write(Flag), write(' faz: '), write(Description), nl,
+    write('Exemplo de uso: '), write(Command), write('  -'), write(Flag), nl.
+
+ask_another_command :-
+    write('Você deseja saber sobre outro comando? (sim/nao)'), nl,
+    read(Choice),
+    handle_another_command_choice(Choice).
+
+handle_another_command_choice(sim) :-
+    chat.
+
+handle_another_command_choice(nao) :-
+    write('Obrigado por usar o ChatBot de Comandos Linux!'), nl.
 
 chat :-
     start_chat,
