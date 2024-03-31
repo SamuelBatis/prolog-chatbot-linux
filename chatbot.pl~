@@ -43,17 +43,16 @@ handle_choice(sim, Command, Flags) :-
     read(Flag),
     (   member(Flag, Flags) ->
         handle_flag(Command, Flag)
-    ;   write('Flag não reconhecida. Por favor, digite uma flag válida.'), nl
+    ;   write('Flag não reconhecida. Por favor, digite uma flag válida.'), nl,
+        handle_choice(sim, Command, Flags)
     ).
 
 handle_choice(nao, _, _) :-
     write('Obrigado por usar o ChatBot de Comandos Linux!'), nl.
 
 handle_flag(_, Flag) :-
-    (   flag_description(Flag, Description) ->
-        write('A flag '), write(Flag), write(' faz: '), write(Description), nl
-    ;   write('Não há informações disponíveis para essa flag.'), nl
-    ).
+    flag_description(Flag, Description),
+    write('A flag '), write(Flag), write(' faz: '), write(Description), nl.
 
 chat :-
     start_chat,
