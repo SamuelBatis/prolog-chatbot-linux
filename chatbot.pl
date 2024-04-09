@@ -4,6 +4,16 @@ command_info(cp, 'Copia arquivos ou diretorios.', ['r', 'i', 'v']).
 command_info(mkdir, 'Cria um diretorio.', ['p', 'v']).
 command_info(rm, 'Remove arquivos ou diretorios.', ['r', 'f', 'i']).
 command_info(touch, 'Cria um arquivo vazio.', ['c', 'm', 'd']).
+command_info(pwd, 'Mostra o diretorio atual ', []).
+command_info(wget, 'Baixa arquivos do FTP ou de servidores web', []).
+command_info(cat, 'Mostra o que esta escrito no arquivo em formato de texto', []).
+command_info(free, 'Mostra a memoria livre e utilizada, precisa ser utilizada com a flag -h', []).
+command_info(who, 'Exibe quem esta atualmente logado no sistema', []).
+command_info(uname, 'Exibe o sistema operacional utilizado', ['r', 'a']).
+command_info(ifconfig, 'Mostra o endereço de todas sa interfaces de rede',[]).
+command_info(hostname, 'Mostra o hostname', ['i']).
+command_info(history, 'Exibe o historico de comandos digitados no terminal', []).
+command_info(echo, 'Mostra o valor digitado', []).
 
 % Descrições das flags
 flag_description('l', 'Exibe detalhes como permissões, proprietário, tamanho, data de modificação, etc.').
@@ -17,6 +27,9 @@ flag_description('f', 'Força a remoção sem confirmação.').
 flag_description('c', 'Não cria o arquivo se ele não existir.').
 flag_description('m', 'Muda a data de modificação do arquivo.').
 flag_description('d', 'Usa a data especificada em vez da atual.').
+flag_description('r', 'Mostra informações do sistema').
+flag_description('a', 'Mostra a versão do kernel').
+flag_description('i', 'Mostra o endereço de IP do sistema').
 
 % Regras para interação com o usuário
 start_chat :-
